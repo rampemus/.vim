@@ -1,0 +1,21 @@
+snippet ireact
+	import React from 'react';
+snippet ireactcomponent
+	import React, { Component } from 'react';
+snippet ireactdom
+	import ReactDOM from 'react-dom';
+snippet rcc
+	class ${1:ClassName} extends React.Component {
+	  state = {
+
+	  }
+	  render() {
+	    return (
+	      <div>
+	        $1
+	      </div>
+	    );
+	  }
+	}
+snippet rdr
+	ReactDOM.render(${1}, ${2})

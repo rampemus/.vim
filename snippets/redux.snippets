@@ -1,0 +1,37 @@
+snippet istore
+	import { createStore } from 'redux';
+snippet connect
+	connect(${1:mapStateToProps}, ${2:mapDispatchToProps})(<${3:VISUAL}/>);
+snippet action
+	const ${1:actionName} = (${2:arg}) => {
+	  return {
+	    type: ${3:VISUAL},
+	    $2
+	  };
+	};
+snippet reducer
+	const ${1:reducerName} = (state={}, action) => {
+	  switch(action.type) {
+	    case ${1:action}:
+	      return {
+	        ...state,
+	        $2
+	      };
+	    default:
+	      return state;
+	  };
+	};
+snippet mapstate
+	const mapStateToProps = (state) => {
+	  return {
+	    ${1:propName}: state.$1,
+	  };
+	};
+snippet mapdispatch
+	const mapDispatchToProps = (dispatch) => {
+	  return {
+	    ${1:propName}: () => {
+	      dispatch(${2:actionName}());
+	    },
+	  };
+	};
