@@ -1,19 +1,19 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+"" set nocompatible              " be iMproved, required
+"" filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"" call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
+"" set rtp+=~/.vim/bundle/Vundle.vim
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'othree/html5.vim'
+"" Plugin 'VundleVim/Vundle.vim'
+"" Plugin 'othree/html5.vim'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+"" call vundle#end()            " required
+"" filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -58,17 +58,47 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
 set nobackup
 set nowb
 set noswapfile
-
 set wrap
 
+" Navigate split view
 map <S-left> :q<cr>
 map <S-right> s<cr>
 map <S-h> <C-w><left>
 map <S-l> <C-w><right>
 
+highlight CursorLine term=bold cterm=bold guibg=Grey10
 set cursorline
-hi CursorLine term=bold cterm=bold guibg=Grey40
 
-" Indenting and closing tags
+" Indenting
 set autoindent
+
+" Move line up and down with mac
+nnoremap √ :m .+1<CR>==
+nnoremap ª :m .-2<CR>==
+
+inoremap √ <Esc>:m .+1<CR>==gi
+inoremap ª <Esc>:m .-2<CR>==gi
+
+vnoremap √ :m '<-2<CR>gv=gvj
+vnoremap ª :m '>+1<CR>gv=gv
+
+" Delete lines with backspace normally
+set backspace=indent,eol,start
+
+" Mac os insert cursor
+let &t_SI.="\e[6 q" "SI = INSERT mode
+let &t_SR.="\e[1 q" "SR = REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode 
+
+" ubuntu/gnome terminal insert cursor
+if has("autocmd")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+  au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' |
+    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
 
