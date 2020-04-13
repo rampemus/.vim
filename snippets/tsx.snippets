@@ -1,3 +1,7 @@
+extends ts
+extends redux
+extends html
+
 snippet ireact
 	import React from 'react'
 snippet ireactcomponent
@@ -20,21 +24,25 @@ snippet reactcomponent
 snippet component
 	import React from 'react'
 
-	const ${1} = (props) => {
+	const ${1}: React.FC = (props) => {
 	  return(
-		  <div>$1</div>
+	    <div>$1</div>
 	  )
 	}
 
 	export default $1
 snippet connectstore
-	const mapStateToProps = (state, props) => {
+	interface OwnProps {}
+	export interface StateProps {}
+	export interface DispatchProps {}
+
+	const mapStateToProps = (state: AppState, props: OwnProps) => {
 	  return {
 	    propname: state.proplocation
 	  }
 	}
 
-	const mapDispatchToProps = {
+	const mapDispatchToProps: DispatchProps = {
 	  functionName,
 	}
 
@@ -43,12 +51,21 @@ snippet connectstore
 	${0}export default connect(mapStateToProps,mapDispatchToProps)(${1})
 
 snippet reducer
-	const initState = {
-
+	interface $1State {
+  
 	}
-
-	const ${1}Reducer = (state = initState, action) => {
-	switch (action.type) {
+  
+	interface $1Action {
+	  type: string,,
+	  data: $1State
+	}
+  
+	const initState: $1State = {
+  
+	}
+  
+	const ${1}Reducer = (state:$1State = initState, action:$1Action) => {
+	  switch (action.type) {
 	    case 'SET_STATE': {
 	      return action.data
 	    }
@@ -56,10 +73,10 @@ snippet reducer
 	  }
 	}
   
-	export const setState = (data) => {
-	  const action = {
-	      type: 'SET_STATE',
-	      data: data
+	export const setState = (data:$1State ) => {
+	  const action:$1Action = {
+	    type: 'SET_STATE',
+	    data: data
 	  }
 	  return action
 	}

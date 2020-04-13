@@ -75,10 +75,8 @@ set autoindent
 " Move line up and down with mac
 nnoremap √ :m .+1<CR>==
 nnoremap ª :m .-2<CR>==
-
-inoremap √ <Esc>:m .+1<CR>==gi
-inoremap ª <Esc>:m .-2<CR>==gi
-
+" inoremap √ <Esc>:m .+1<CR>==gi
+" inoremap ª <Esc>:m .-2<CR>==gi
 vnoremap √ :m '<-2<CR>gv=gvj
 vnoremap ª :m '>+1<CR>gv=gv
 
@@ -89,16 +87,4 @@ set backspace=indent,eol,start
 let &t_SI.="\e[6 q" "SI = INSERT mode
 let &t_SR.="\e[1 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode 
-
-" ubuntu/gnome terminal insert cursor
-if has("autocmd")
-  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-  au InsertEnter,InsertChange *
-    \ if v:insertmode == 'i' |
-    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-    \ elseif v:insertmode == 'r' |
-    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-    \ endif
-  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-endif
 
