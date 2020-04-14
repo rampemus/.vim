@@ -1,16 +1,14 @@
-extends jsx
-
 snippet istore
-	import { createStore } from 'redux'
+	import { createStore } from 'redux'${0}
 snippet connect
-	connect(${1:mapStateToProps}, ${2:mapDispatchToProps})(<${3:VISUAL}/>)
+	connect(${1:mapStateToProps}, ${2:mapDispatchToProps})(<${3:VISUAL}/>)${0}
 snippet action
 	const ${1:actionName} = (${2:arg}) => {
 	  return {
 	    type: ${3:VISUAL},
 	    $2
 	  }
-	}
+	}${0}
 snippet reducer
 	const ${1:reducerName} = (state={}, action) => {
 	  switch(action.type) {
@@ -20,15 +18,15 @@ snippet reducer
 	        $2
 	      }
 	    default:
-	      return state
+	    return state
 	  }
-	}
+	}${0}
 snippet mapstate
 	const mapStateToProps = (state) => {
 	  return {
 	    ${1:propName}: state.$1,
 	  }
-	}
+	}${0}
 snippet mapdispatch
 	const mapDispatchToProps = (dispatch) => {
 	  return {
@@ -36,4 +34,4 @@ snippet mapdispatch
 	      dispatch(${2:actionName}())
 	    },
 	  }
-	}
+	}${0}

@@ -1,9 +1,9 @@
 snippet ireact
-	import React from 'react'
+	import React from 'react'${0}
 snippet ireactcomponent
-	import React, { Component } from 'react'
+	import React, { Component } from 'react'${0}
 snippet ireactdom
-	import ReactDOM from 'react-dom'
+	import ReactDOM from 'react-dom'${0}
 snippet reactcomponent
 	class ${1:ClassName} extends React.Component {
 	  state = {
@@ -16,7 +16,7 @@ snippet reactcomponent
 	      </div>
 	    )
 	  }
-	}
+	}${0}
 snippet component
 	import React from 'react'
 
@@ -26,7 +26,7 @@ snippet component
 	  )
 	}
 
-	export default $1
+	export default $1${0}
 snippet connectstore
 	const mapStateToProps = (state, props) => {
 	  return {
@@ -64,7 +64,7 @@ snippet reducer
 	  return action
 	}
   
-	export default $1Reducer
+	export default $1Reducer${0}
 snippet service
 	import axios from 'axios'
 	const baseUrl = '/api/${1}'
@@ -74,7 +74,7 @@ snippet service
 	  return request.then(response => response.data)
 	}
   
-	export default { getAll }
+	export default { getAll }${0}
 snippet mongoosemodel
 	const mongoose = require('mongoose')
   
@@ -95,7 +95,7 @@ snippet mongoosemodel
   
 	const Model = mongoose.model('Model', modelSchema)
   
-	module.exports = $MT_FILENAME_BASE
+	module.exports = ${0}
   
 snippet rdr
-	ReactDOM.render(${1}, ${2})
+	ReactDOM.render(${1}, ${2})${0}

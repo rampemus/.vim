@@ -5,72 +5,72 @@
 # The suffix `c` stands for "Clipboard".
 
 snippet [
-	[${1:text}](http://${2:address})
+	[${1:text}](http://${2:address})${0}
 snippet [*
-	[${1:link}](${2:`@*`})
+	[${1:link}](${2:`@*`})${0}
 snippet [c
-	[${1:link}](${2:`@+`})
+	[${1:link}](${2:`@+`})${0}
 snippet ["
-	[${1:text}](http://${2:address} "${3:title}")
+	[${1:text}](http://${2:address} "${3:title}")${0}
 snippet ["*
-	[${1:link}](${2:`@*`} "${3:title}")
+	[${1:link}](${2:`@*`} "${3:title}")${0}
 snippet ["c
-	[${1:link}](${2:`@+`} "${3:title}")
+	[${1:link}](${2:`@+`} "${3:title}")${0}
 snippet [:
-	[${1:id}]: http://${2:url}
+	[${1:id}]: http://${2:url}${0}
 
 snippet [:*
-	[${1:id}]: ${2:`@*`}
+	[${1:id}]: ${2:`@*`}${0}
 
 snippet [:c
-	[${1:id}]: ${2:`@+`}
+	[${1:id}]: ${2:`@+`}${0}
 
 snippet [:"
-	[${1:id}]: http://${2:url} "${3:title}"
+	[${1:id}]: http://${2:url} "${3:title}"${0}
 
 snippet [:"*
-	[${1:id}]: ${2:`@*`} "${3:title}"
+	[${1:id}]: ${2:`@*`} "${3:title}"${0}
 
 snippet [:"c
-	[${1:id}]: ${2:`@+`} "${3:title}"
+	[${1:id}]: ${2:`@+`} "${3:title}"${0}
 
 snippet ![
-	![${1:alttext}](${2:/images/image.jpg})
+	![${1:alttext}](${2:/images/image.jpg})${0}
 snippet ![*
-	![${1:alt}](${2:`@*`})
+	![${1:alt}](${2:`@*`})${0}
 snippet ![c
-	![${1:alt}](${2:`@+`})
+	![${1:alt}](${2:`@+`})${0}
 snippet !["
-	![${1:alttext}](${2:/images/image.jpg} "${3:title}")
+	![${1:alttext}](${2:/images/image.jpg} "${3:title}")${0}
 snippet !["*
-	![${1:alt}](${2:`@*`} "${3:title}")
+	![${1:alt}](${2:`@*`} "${3:title}")${0}
 snippet !["c
-	![${1:alt}](${2:`@+`} "${3:title}")
+	![${1:alt}](${2:`@+`} "${3:title}")${0}
 snippet ![:
-	![${1:id}]: ${2:url}
+	![${1:id}]: ${2:url}${0}
 
 snippet ![:*
-	![${1:id}]: ${2:`@*`}
+	![${1:id}]: ${2:`@*`}${0}
 
 snippet ![:"
-	![${1:id}]: ${2:url} "${3:title}"
+	![${1:id}]: ${2:url} "${3:title}"${0}
 
 snippet ![:"*
-	![${1:id}]: ${2:`@*`} "${3:title}"
+	![${1:id}]: ${2:`@*`} "${3:title}"${0}
 
 snippet ![:"c
-	![${1:id}]: ${2:`@+`} "${3:title}"
+	![${1:id}]: ${2:`@+`} "${3:title}"${0}
 
 snippet <
-	<http://${1:url}>
+	<http://${1:url}>${0}
 snippet <*
-	<`@*`>
+	<`@*`>${0}
 snippet <c
-	<`@+`>
+	<`@+`>${0}
 snippet **
-	**${1:bold}**
+	**${1:bold}**${0}
 snippet __
-	__${1:bold}__
+	__${1:bold}__${0}
 snippet ===
 	`repeat('=', strlen(getline(line('.') - 3)))`
 
@@ -106,7 +106,7 @@ snippet ```l
 	\`\`\`${1:language}
 	${2:code}
 	\`\`\`
-
+	${0}
 snippet codeblock-short
 	{% codeblock %}
 	${0:code_snippet}
@@ -118,27 +118,28 @@ snippet codeblock-full
 	{% endcodeblock %}
 
 snippet gist-full
-	{% gist ${1:gist_id} ${0:filename} %}
+	{% gist ${1:gist_id} ${2:filename} %}${0}
 
 snippet gist-short
-	{% gist ${0:gist_id} %}
+	{% gist ${1:gist_id} %}${0}
 
 snippet img
-	{% img ${1:class} ${2:URL} ${3:width} ${4:height} ${5:title_text} ${0:alt_text} %}
+	{% img ${1:class} ${2:URL} ${3:width} ${4:height} ${5:title_text} ${6:alt_text} %}${0}
 
 snippet youtube
-	{% youtube ${0:video_id} %}
+	{% youtube ${1:video_id} %}${0}
 
 snippet table
-	|  ${0:factors}      |    ${1:a}       |  ${2:b}   	|
+	|  ${5:factors}      |    ${1:a}       |  ${2:b}   	|
 	| ------------- |-------------  | ------- |
 	|    ${3:f1}    |    Y          | N       |
 	|    ${4:f2}    |    Y          | N       |
-
+	${0}
 # The quote should appear only once in the text. It is inherently part of it.
 # See http://octopress.org/docs/plugins/pullquote/ for more info.
 
 snippet pullquote
 	{% pullquote %}
-	${1:text} {" ${2:quote} "} ${0:text}
+	${1:text} {" ${2:quote} "} ${3:text}
 	{% endpullquote %}
+	${0}
