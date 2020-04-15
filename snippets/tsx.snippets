@@ -9,12 +9,14 @@ snippet ireactcomponent
 snippet ireactdom
 	import ReactDOM from 'react-dom'${0}
 snippet reactcomponent
+	import React from 'react'
+
 	class ${1} extends React.Component {
 	  constructior(props) {
-	      super(props)
-	      this.state = {
-	        ${2}
-	      }
+	    super(props)
+	    this.state = {
+	      ${2}
+	    }
 	  }
 
 	  ${3}
@@ -121,6 +123,6 @@ snippet mongoosemodel
   
 	const Model = mongoose.model('Model', modelSchema)
   
-	module.exports = $MT_FILENAME_BASE${0}
+	module.exports = Model
 snippet rdr
 	ReactDOM.render(${1}, ${2})${0}
