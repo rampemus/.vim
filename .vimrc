@@ -11,6 +11,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ervandew/supertab'
+Plugin 'dense-analysis/ale'
+let g:ale_fix_on_save = 1
+let g:ale_fixers = ['eslint', 'tslint']
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
 "" Plugin 'othree/html5.vim'
 
 " All of your Plugins must be added before the following line
@@ -18,32 +25,45 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 execute pathogen#infect()
 "imap <tab> <Plug>snipMateNextOrTrigger
 "imap <tab> <Plug>SuperTabForward
 
+" *** OWN SETTINGS START FROM HERE ***
+
 " NERDTree stuff
-:set modifiable
+set modifiable
 nmap § :NERDTreeToggle<CR>
 
-" *** OWN SETTINGS START FROM HERE ***
+" NERDTress File highlighting
+
 set number
 syntax on
 colorscheme onedark
+let g:airline_theme='onedark'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+""let g:syntastic_always_populate_loc_list = 1
+""let g:syntastic_auto_loc_list = 1
+""let g:syntastic_check_on_open = 1
+""let g:syntastic_check_on_wq = 0
+
+""let g:syntastic_javascript_checkers = ['eslint']
+""let g:syntastic_javascript_eslint_exec = 'eslint_d'
+""let g:syntastic_javascript_closurecompiler_script = './node_modules'
+""let g:syntastic_typescript_checkers = ['tslint'] 
+""let g:syntastic_typescript_eslint_exec = 'tslint_d'
+""let g:syntastic_typescript_closurecompiler_script = '/usr/local/lib/node_modules'
+
+
 "set tabstop=2
 "set autoindent
 "set expandtab
-"set foldcolumn=1
+set foldcolumn=1
 "set softtabstop=2
 set showmatch
 set nohlsearch
@@ -58,14 +78,27 @@ imap jj <esc>
 imap kj <esc>
 imap jk <esc>
 imap kkk <esc>
+
+
+" TAB shortcuts
 nnoremap <tab> >>
-"inoremap <tab> <C-t>
+inoremap <tab> <C-t> " gets overwritten by supertab
 nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabCrMapping = 1
+inoremap <expr> <Space> pumvisible() ? "\<C-y>" : " "
+
+filetype on
 "packadd typescript-vim
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {}
+let g:snipMate.scope_aliases['typescript'] = 'tsx,ts,typescript_tsx,tscript'
+let g:snipMate.scope_aliases['typescript.tsx'] = 'tsx, typescriptreact, typescript'
+let g:snipMate.scope_aliases['typescriptreact'] = 'tsx, typescript.tsx, typescript'
 
 " Indenting
-set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
+set tabstop=2 softtabstop=0 expandtab shiftwidth=2 ""smarttab
 
 " No backups
 set nobackup
