@@ -1,0 +1,148 @@
+# Functions
+# prototype
+snippet prototype
+	${1:class_name}.prototype.${2:method_name} = function(${3}) {
+	  ${0:${VISUAL}}
+	}
+# function
+snippet fun "function"
+	function ${1:function_name}(${2}) {
+	  ${0:${VISUAL}}
+	}
+# afunction
+snippet asf "async function"
+	async function ${1:function_name}(${2}) {
+	  ${0:${VISUAL}}
+	}
+snippet switch
+	switch (${1:expression}) {
+	  case '${3:case}':
+	    ${4}
+	    break
+	  ${0}
+	  default:
+	    ${2}
+	}
+snippet try "try { ... } catch(e) { ... }"
+	try {
+	  ${0:${VISUAL}}
+	} catch (${1:e}) {
+	  ${2:/* handle error */}
+	}
+snippet tryfinally "try { ... } catch(e) { ... } finally { ... }"
+	try {
+	  ${0:${VISUAL}}
+	} catch (${1:e}) {
+	  ${2:/* handle error */}
+	} finally {
+	  ${3:/* be executed regardless of the try / catch result*/}
+	}
+# throw Error
+# Objects
+# Object Method
+# singleton
+# Crockford's object function
+snippet obj
+	function object(o) {
+	  function F() {}
+	  F.prototype = o
+	  return new F()
+	}
+# Define single property
+# Documentation
+# docstring
+snippet /**
+	/**
+	 * ${0:description}
+	 *
+	 */
+snippet @par
+	@param {${1:type}} ${2:name} ${0:description}
+snippet @ret
+	@return {${1:type}} ${0:description}
+# JSON.parse
+snippet jsonp
+	JSON.parse(${0:jstr})
+# JSON.stringify
+snippet jsons
+	JSON.stringify(${0:object})
+# DOM selectors
+# Get elements
+snippet get
+	getElementsBy${1:TagName}('${0}')
+# Get element
+snippet getid
+	getElementById('${0}')
+# Elements by class
+snippet getclass
+	${1:document}.getElementsByClassName('${0:class}')
+snippet cl "console.log"
+	console.log(${0})
+snippet cd "console.debug"
+	console.debug(${0})
+snippet ce "console.error"
+	console.error(${0})
+snippet cw "console.warn"
+	console.warn(${0})
+snippet ci "console.info"
+	console.info(${0})
+snippet ct "console.trace"
+	console.trace(${0:label})
+snippet ctime "console.time ... console.timeEnd"
+	console.time("${1:label}")
+	${0:${VISUAL}}
+	console.timeEnd("$1")
+snippet ctimestamp "console.timeStamp"
+	console.timeStamp("${1:label}")
+snippet ca "console.assert"
+	console.assert(${1:expression}, ${0:obj})
+snippet cclear "console.clear"
+	console.clear()
+snippet cdir "console.dir"
+	console.dir(${0:obj})
+snippet cdirx "console.dirxml"
+	console.dirxml(${1:object})
+snippet cgroup "console.group"
+	console.group("${1:label}")
+	${0:${VISUAL}}
+	console.groupEnd()
+snippet cgroupc "console.groupCollapsed"
+	console.groupCollapsed("${1:label}")
+	${0:${VISUAL}}
+	console.groupEnd()
+snippet cprof "console.profile"
+	console.profile("${1:label}")
+	${0:${VISUAL}}
+	console.profileEnd()
+snippet ctable "console.table"
+	console.table(${1:"${2:value}"})
+# Misc
+# setTimeout function
+snippet timeout
+	setTimeout(() => {${0}}, 1000)
+snippet =>
+	const ${1:function_name} = (${2}) => {
+	  ${0:${VISUAL}}
+	}
+snippet mongoosemodel
+	const mongoose = require('mongoose')
+	
+	const modelSchema = mongoose.Schema({
+	  item: {
+	    type: String,
+	    required: true,
+	    minlength: 2
+	  },
+	})
+	
+	modelSchema.set('toJSON', {
+	  transform: (document, returnedObject) => {
+	    returnedObject.id = returnedObject._id.toString()
+	    delete returnedObject._id
+	  }
+	})
+	
+	const Model = mongoose.model('Model', modelSchema)
+
+	module.exports = $MT_FILENAME_BASE
+  
