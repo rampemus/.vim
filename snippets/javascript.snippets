@@ -1,22 +1,22 @@
 # Functions
 # prototype
 snippet prototype
-	${1:class_name}.prototype.${2:method_name} = function(${3}) {
-	  ${0:${VISUAL}}
+	${1}.prototype.${2} = function(${3}) {
+	  ${0}
 	}
 # function
 snippet fun "function"
-	function ${1:function_name}(${2}) {
-	  ${0:${VISUAL}}
+	function ${1}(${2}) {
+	  ${0}
 	}
 # afunction
 snippet asf "async function"
-	async function ${1:function_name}(${2}) {
-	  ${0:${VISUAL}}
+	async function ${1}(${2}) {
+	  ${0}
 	}
 snippet switch
-	switch (${1:expression}) {
-	  case '${3:case}':
+	switch (${1}) {
+	  case '${3}':
 	    ${4}
 	    break
 	  ${0}
@@ -25,17 +25,17 @@ snippet switch
 	}
 snippet try "try { ... } catch(e) { ... }"
 	try {
-	  ${0:${VISUAL}}
-	} catch (${1:e}) {
-	  ${2:/* handle error */}
+	  ${0}
+	} catch (${1}) {
+	  ${2}
 	}
 snippet tryfinally "try { ... } catch(e) { ... } finally { ... }"
 	try {
-	  ${0:${VISUAL}}
-	} catch (${1:e}) {
-	  ${2:/* handle error */}
+	  ${0}
+	} catch (${1}) {
+	  ${2}
 	} finally {
-	  ${3:/* be executed regardless of the try / catch result*/}
+	  ${3}
 	}
 # throw Error
 # Objects
@@ -53,29 +53,29 @@ snippet obj
 # docstring
 snippet /**
 	/**
-	 * ${0:description}
+	 * ${0}
 	 *
 	 */
 snippet @par
-	@param {${1:type}} ${2:name} ${0:description}
+	@param {${0}}
 snippet @ret
-	@return {${1:type}} ${0:description}
+	@return {${1}} ${0}
 # JSON.parse
 snippet jsonp
-	JSON.parse(${0:jstr})
+	JSON.parse(${0})
 # JSON.stringify
 snippet jsons
-	JSON.stringify(${0:object})
+	JSON.stringify(${0})
 # DOM selectors
 # Get elements
 snippet get
-	getElementsBy${1:TagName}('${0}')
+	getElementsBy${1}('${0}')
 # Get element
 snippet getid
 	getElementById('${0}')
 # Elements by class
 snippet getclass
-	${1:document}.getElementsByClassName('${0:class}')
+	${1}.getElementsByClassName('${0}')
 snippet cl "console.log"
 	console.log(${0})
 snippet cd "console.debug"
@@ -87,42 +87,42 @@ snippet cw "console.warn"
 snippet ci "console.info"
 	console.info(${0})
 snippet ct "console.trace"
-	console.trace(${0:label})
+	console.trace(${0})
 snippet ctime "console.time ... console.timeEnd"
-	console.time("${1:label}")
-	${0:${VISUAL}}
+	console.time("${1}")
+	${0}}
 	console.timeEnd("$1")
 snippet ctimestamp "console.timeStamp"
-	console.timeStamp("${1:label}")
+	console.timeStamp("${1}")
 snippet ca "console.assert"
-	console.assert(${1:expression}, ${0:obj})
+	console.assert(${1}, ${0})
 snippet cclear "console.clear"
 	console.clear()
 snippet cdir "console.dir"
-	console.dir(${0:obj})
+	console.dir(${0})
 snippet cdirx "console.dirxml"
-	console.dirxml(${1:object})
+	console.dirxml(${1})
 snippet cgroup "console.group"
-	console.group("${1:label}")
-	${0:${VISUAL}}
+	console.group("${1}")
+	${0}}
 	console.groupEnd()
 snippet cgroupc "console.groupCollapsed"
-	console.groupCollapsed("${1:label}")
-	${0:${VISUAL}}
+	console.groupCollapsed("${1}")
+	${0}}
 	console.groupEnd()
 snippet cprof "console.profile"
-	console.profile("${1:label}")
-	${0:${VISUAL}}
+	console.profile("${1}")
+	${0}}
 	console.profileEnd()
 snippet ctable "console.table"
-	console.table(${1:"${2:value}"})
+	console.table(${1}"})
 # Misc
 # setTimeout function
 snippet timeout
 	setTimeout(() => {${0}}, 1000)
 snippet =>
-	const ${1:function_name} = (${2}) => {
-	  ${0:${VISUAL}}
+	const ${1} = (${2}) => {
+	  ${0}}
 	}
 snippet mongoosemodel
 	const mongoose = require('mongoose')
