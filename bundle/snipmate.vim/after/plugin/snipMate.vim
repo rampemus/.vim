@@ -10,7 +10,13 @@ let s:did_snips_mappings = 1
 "
 " You can safely adjust these mappings to your preferences (as explained in
 " :help snipMate-remap).
-ino <silent> <tab> <c-r>=TriggerSnippet()<cr>
+
+" condition1 last-char-was-space: strpart(getline('.'), col('.')-2, 1) == " "
+" condition2 cursor-end-of-line: len(getline('.')) == col('.')-1
+" condition3 cursor-start-of-line: col('.') == 1
+
+ino <silent> <expr> <tab> ( len(getline('.')) == col('.')-1 && col('.') != 1 && strpart(getline('.'), col('.')-2, 1) != " " ) ? "<c-r>=TriggerSnippet()<cr>" : "  "
+" ino <silent> <tab> <c-r>=TriggerSnippet()<cr>
 snor <silent> <tab> <esc>i<right><c-r>=TriggerSnippet()<cr>
 ino <silent> <s-tab> <c-r>=BackwardsSnippet()<cr>
 snor <silent> <s-tab> <esc>i<right><c-r>=BackwardsSnippet()<cr>

@@ -5,10 +5,6 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ervandew/supertab'
 Plugin 'dense-analysis/ale'
@@ -17,18 +13,11 @@ let g:ale_fixers = ['eslint', 'tslint']
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
-
-"" Plugin 'othree/html5.vim'
-
-" All of your Plugins must be added before the following line
+Plugin 'alvan/vim-closetag'
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 
 execute pathogen#infect()
-"imap <tab> <Plug>snipMateNextOrTrigger
-"imap <tab> <Plug>SuperTabForward
 
 " *** OWN SETTINGS START FROM HERE ***
 
@@ -37,7 +26,6 @@ set modifiable
 nmap § :NERDTreeToggle<CR>
 
 " NERDTress File highlighting
-
 set number
 syntax on
 colorscheme onedark
@@ -46,19 +34,6 @@ let g:airline_theme='onedark'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-""let g:syntastic_always_populate_loc_list = 1
-""let g:syntastic_auto_loc_list = 1
-""let g:syntastic_check_on_open = 1
-""let g:syntastic_check_on_wq = 0
-
-""let g:syntastic_javascript_checkers = ['eslint']
-""let g:syntastic_javascript_eslint_exec = 'eslint_d'
-""let g:syntastic_javascript_closurecompiler_script = './node_modules'
-""let g:syntastic_typescript_checkers = ['tslint'] 
-""let g:syntastic_typescript_eslint_exec = 'tslint_d'
-""let g:syntastic_typescript_closurecompiler_script = '/usr/local/lib/node_modules'
-
 
 "set tabstop=2
 "set autoindent
@@ -73,29 +48,32 @@ map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 nmap ö /
 nmap ä ?
-nmap 9 $
-imap jj <esc>
-imap kj <esc>
-imap jk <esc>
-imap kkk <esc>
+nmap + $
+inoremap jj <esc>
+inoremap kj <esc>
+inoremap jk <esc>
+inoremap kkk <esc>
+inoremap ddd <esc>
 
-
+" inoremap <expr> <tab> strpart(getline('.'), col('.')-1, 1) == " " ? "a" : "b"
 " TAB shortcuts
 nnoremap <tab> >>
+" inoremap <tab> >>
 inoremap <tab> <C-t> " gets overwritten by supertab
 nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
+
+"fix backspace (char[-1] == ' ' && char[-2] == ' ' && col('.')%2 )
+inoremap <expr> <BS> (strpart(getline('.'), col('.')-3, 2) == "  " && col('.')%2 != 0 ) ? "<BS><BS>" : "<BS>" 
+
+
+" ino <silent> <expr> <tab> ( len(getline('.')) == col('.')-1 && col('.') != 1 && strpart(getline('.'), col('.')-2, 1) != " " ) ? "<c-r>=TriggerSnippet()<cr>" : "  "
+
+" check snipmate.vim line 16 for other settings
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabCrMapping = 1
 inoremap <expr> <Space> pumvisible() ? "\<C-y>" : " "
 
-filetype on
-"packadd typescript-vim
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {}
-let g:snipMate.scope_aliases['typescript'] = 'tsx,ts,typescript_tsx,tscript'
-let g:snipMate.scope_aliases['typescript.tsx'] = 'tsx, typescriptreact, typescript'
-let g:snipMate.scope_aliases['typescriptreact'] = 'tsx, typescript.tsx, typescript'
 
 " Indenting
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 ""smarttab
@@ -111,6 +89,8 @@ map <S-left> :q<cr>
 nmap <S-right> o<cr>
 map <S-h> <C-w><left>
 map <S-l> <C-w><right>
+vnoremap <Tab> >>
+vnoremap <S-Tab> <<
 
 highlight CursorLine term=bold cterm=bold guibg=Grey10
 set cursorline
@@ -128,6 +108,23 @@ inoremap [<CR> [<CR>]<ESC>$O<Space><Space>
 inoremap { {}<left>
 inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
 inoremap {<CR> {<CR>}<ESC>$O<Space><Space>
+let forbidden = ['""','()','[]','{}','''''']
+inoremap <expr> <BS> ( index(forbidden, strpart(getline('.'), col('.')-2, 2)  ) >= 0 ) ? "<right><BS><BS>" : "<BS>"
+
+" Quick tags
+inoremap <expr> <CR> ( strpart(getline('.'), col('.')-2, 1) == ">" && strpart(getline('.'), col('.')-1, 1) == "<" ) ? "<CR><ESC>k$a<CR>" : "<CR>"
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+let g:closetag_filetypes = 'html,xhtml,phtml'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+let g:closetag_shortcut = '>'
+let g:closetag_close_shortcut = '<leader>>'
 
 " Line destruction (reverse J)
 nnoremap K $?[^=:\)\]\}\>\&\|\?]\s<CR>lxi<CR><Esc>k:noh<CR>
@@ -150,5 +147,7 @@ let &t_EI.="\e[1 q" "EI = NORMAL mode
 
 " Save with enter 
 nnoremap S :w<CR>
+inoremap SSS <Esc>:w<CR>
 nnoremap Q :q!<CR>
+
 
