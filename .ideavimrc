@@ -29,6 +29,10 @@ inoremap ª <Esc>:m .-2<CR>==gi
 vnoremap √ :m '<-2<CR>gv=gvj
 vnoremap ª :m '>+1<CR>gv=gv
 
+" equal or greater/smaller than
+inoremap ≤ <=
+inoremap ≥ >=
+
 " Delete lines with backspace normally
 set backspace=indent,eol,start
 

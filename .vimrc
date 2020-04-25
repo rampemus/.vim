@@ -132,10 +132,12 @@ nnoremap K $?[^=:\)\]\}\>\&\|\?]\s<CR>lxi<CR><Esc>k:noh<CR>
 " Move line up and down with mac
 nnoremap √ :m .+1<CR>==
 nnoremap ª :m .-2<CR>==
-" inoremap √ <Esc>:m .+1<CR>==gi
-" inoremap ª <Esc>:m .-2<CR>==gi
 vnoremap √ :m '<-2<CR>gv=gvj
 vnoremap ª :m '>+1<CR>gv=gv
+
+" equal or greater/lower
+inoremap ≤ <=
+inoremap ≥ >=
 
 " Delete lines with backspace normally
 set backspace=indent,eol,start
@@ -145,9 +147,10 @@ let &t_SI.="\e[6 q" "SI = INSERT mode
 let &t_SR.="\e[1 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode 
 
-" Save with enter 
+vnoremap <C-c> :w !pbcopy<CR><CR>
+noremap <C-v> :r !pbpaste<CR><CR>
+
 nnoremap S :w<CR>
 inoremap SSS <Esc>:w<CR>
 nnoremap Q :q!<CR>
-
 
