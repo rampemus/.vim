@@ -57,9 +57,13 @@ inoremap ddd <esc>
 
 " inoremap <expr> <tab> strpart(getline('.'), col('.')-1, 1) == " " ? "a" : "b"
 " TAB shortcuts
+
+" inoremap <expr> <tab> ( index(endofblock, strpart(getline('.'), col('.'), 1)  ) >= 0 ) ? "<Esc>Ca<c-r>=TriggerSnippet()<cr><Esc>p" : ">>"
+" ino <silent> <expr> <tab> ( len(getline('.')) == col('.')-1 && col('.') != 1 && strpart(getline('.'), col('.')-2, 1) != " " ) ? "<c-r>=TriggerSnippet()<cr>" : "  "
+" inoremap <expr> <tab> ( len(getline('.')) > col('.') ) ? ">>" : "<c-p>" 
+" inoremap <tab> <C-p>
 nnoremap <tab> >>
-" inoremap <tab> >>
-inoremap <tab> <C-t> " gets overwritten by supertab
+" inoremap <tab> <C-t> " gets overwritten by supertab
 nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
 
@@ -71,10 +75,10 @@ inoremap <expr> <BS> (strpart(getline('.'), col('.')-3, 2) == "  " && col('.')%2
 
 " check snipmate.vim line 16 for other settings
 let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabCrMapping = 1
-inoremap <expr> <Space> pumvisible() ? "\<C-y>" : " "
+let g:SuperTabCrMapping = 0
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : " "
 
-
+" nnoremap \ :NERDComment<cr>
 " Indenting
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 ""smarttab
 
@@ -101,13 +105,13 @@ inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-inoremap (<CR> (<CR>)<ESC>$O<Space><Space>
+inoremap (<CR> (<CR>)<ESC>$O
 inoremap [ []<left>
 inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
-inoremap [<CR> [<CR>]<ESC>$O<Space><Space>
+inoremap [<CR> [<CR>]<ESC>$O
 inoremap { {}<left>
 inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
-inoremap {<CR> {<CR>}<ESC>$O<Space><Space>
+inoremap {<CR> {<CR>}<ESC>$O
 let forbidden = ['""','()','[]','{}','''''']
 inoremap <expr> <BS> ( index(forbidden, strpart(getline('.'), col('.')-2, 2)  ) >= 0 ) ? "<right><BS><BS>" : "<BS>"
 
