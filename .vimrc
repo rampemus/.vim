@@ -14,6 +14,7 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'alvan/vim-closetag'
+Plugin 'Chiel92/vim-autoformat'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -71,6 +72,7 @@ inoremap <S-Tab> <C-d>
 inoremap <expr> <BS> (strpart(getline('.'), col('.')-3, 2) == "  " && col('.')%2 != 0 ) ? "<BS><BS>" : "<BS>" 
 
 
+cmap git Git
 " ino <silent> <expr> <tab> ( len(getline('.')) == col('.')-1 && col('.') != 1 && strpart(getline('.'), col('.')-2, 1) != " " ) ? "<c-r>=TriggerSnippet()<cr>" : "  "
 
 " check snipmate.vim line 16 for other settings
