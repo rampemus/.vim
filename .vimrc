@@ -55,6 +55,9 @@ inoremap kj <esc>
 inoremap jk <esc>
 inoremap kkk <esc>
 inoremap ddd <esc>
+nnoremap cw ciw
+nnoremap dw diw
+nnoremap cp cip
 
 " inoremap <expr> <tab> strpart(getline('.'), col('.')-1, 1) == " " ? "a" : "b"
 " TAB shortcuts
@@ -133,7 +136,7 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
 " Line destruction (reverse J)
-nnoremap K $?[^=:\)\]\}\>\&\|\?]\s<CR>lxi<CR><Esc>k:noh<CR>
+nnoremap K $?[^=:\)\]\>\&\|\?]\s<CR>lxi<CR><Esc>k:noh<CR>
 
 " Move line up and down with mac
 nnoremap √ :m .+1<CR>==
