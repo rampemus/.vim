@@ -1,7 +1,3 @@
-# This snippet file enables vue files to use tabs for html, js and css. It also
-# includes some vue-specific html-like snippets, as well as some general
-# boilerplate code for vue.
-
 extends html, javascript, css
 
 # These snippets form a port of Sarah Drasner's vue-sublime-snippets
@@ -13,7 +9,7 @@ snippet slot
 
 snippet template
 	<template>
-		${0}
+		${1}
 	</template>
 
 snippet transition
@@ -35,7 +31,7 @@ snippet vbase
 	</script>
 
 	<style scoped>
-		${0}
+		${1}
 	</style>
 
 snippet vimport:c
@@ -45,14 +41,14 @@ snippet vimport:c
 		components: {
 			$1
 		}
-	}${0}
+	}${1}
 
 snippet vactions
 	actions: {
 		${1}({commit}, ${2}) {
 			commit($1, $2)
 		}
-	}${0}
+	}${1}
 
 # Add in js animation hooks
 snippet vanim:js:el
@@ -68,7 +64,7 @@ snippet vanim:js:el
 		@leave-cancelled="leaveCancelled"
 		:css="false">
 
-	 </transition>${0}
+	 </transition>${1}
 
 snippet vanim:js:method
 	methods: {
@@ -98,46 +94,46 @@ snippet vanim:js:method
 		leaveCancelled(el, done) {
 			console.log('leaveCancelled')
 		}
-	}${0}
+	}${1}
 
 snippet vcl
-	@click="${1}"${0}
+	@click="${1}"${2}
 
 snippet vdata
 	data() {
 		return {
 			${1}: ${2}
 		}
-	}${0}
+	}${3}
 
 snippet vfilter
 	filters: {
 		${1}: function(${2}) {
-			return${0}
+			return${4}
 		}
 	}
 
 snippet vfor
-	<div v-for="${1} in ${2}" :key="$1.id">
-		{{ $1 }}
-	</div>${0}
+	<div v-for="${1} in ${2}" :key="${3}">
+	  ${4}
+	</div>${5}
 
 snippet vgetters
 	getters: {
 		${1}: state => {
-			return state.$1
+			return state.${2}
 		}
-	}${0}
+	}${3}
 
 snippet vimport
-	import ${1:New} from './components/$1.vue'
+	import ${1} from './components/${2}.vue'
 
 snippet vkeep
 	<keep-alive>
 		<component :is="">
 			<p>default</p>
 		</component>
-	</keep-alive>
+	</keep-alive>${1}
 
 snippet vmixin
 	const ${1} = {
@@ -146,26 +142,26 @@ snippet vmixin
 		},
 	}
 	const ${2} = Vue.extend({
-		mixins: [$1]
+		mixins: [${3}]
 	})
 
 snippet vmutations
 	mutations: {
 		${1}(state, ${3}) => {
-			state.${2} = $3
+			state.${2} = ${4}
 		}
-	}
+	}${5}
 
 snippet vprops:d
 	${1}: {
 		type: ${2},
-		default: ${0}
+		default: ${3}
 	},
 
 snippet vprops
 	${1}: {
 		type: ${2}
-	},
+	},${3}
 
 snippet vstore
 	import Vue from 'vue'
@@ -177,951 +173,15 @@ snippet vstore
 		state: {
 			${1}: ${2}
 		}
-	})${0}
+	})${3}
 
 
 # vue-i18n snippets https://github.com/kazupon/vue-i18n
 
 snippet trans
-	$t('$1')${0}
+	$t('$1')${2}
 
 # Translation with parameter
 snippet transc
-	$t('$1', { $2: $3 })${0}
+	$t('${1}', { ${2}: ${3} })${4}
 
-### manual extensions
-
-# Functions
-# prototype
-snippet prototype
-	${1}.prototype.${2} = function(${3}) {
-		${0}
-	}
-# function
-snippet fun "function"
-	function ${1}(${2}) {
-		${0}
-	}
-# afunction
-snippet asf "async function"
-	async function ${1}(${2}) {
-		${0}
-	}
-snippet switch
-	switch (${1}) {
-		case '${3}':
-			${4}
-			break
-		${0}
-		default:
-			${2}
-	}
-snippet try "try { ... } catch(e) { ... }"
-	try {
-		${0}
-	} catch (${1}) {
-		${2}
-	}
-snippet tryfinally "try { ... } catch(e) { ... } finally { ... }"
-	try {
-		${0}
-	} catch (${1}) {
-		${2}
-	} finally {
-		${3}
-	}
-# throw Error
-# Objects
-# Object Method
-# singleton
-# Crockford's object function
-snippet obj
-	function object(o) {
-		function F() {}
-		F.prototype = o
-		return new F()
-	}
-# Define single property
-# Documentation
-# docstring
-snippet /**
-	/**
-	 * ${0}
-	 *
-	 */
-snippet @par
-	@param {${0}}
-snippet @ret
-	@return {${1}} ${0}
-# JSON.parse
-snippet jsonp
-	JSON.parse(${0})
-# JSON.stringify
-snippet jsons
-	JSON.stringify(${0})
-# DOM selectors
-# Get elements
-snippet get
-	getElementsBy${1}('${0}')
-# Get element
-snippet getid
-	getElementById('${0}')
-# Elements by class
-snippet getclass
-	${1}.getElementsByClassName('${0}')
-snippet cl "console.log"
-	console.log(${0})
-snippet cd "console.debug"
-	console.debug(${0})
-snippet ce "console.error"
-	console.error(${0})
-snippet cw "console.warn"
-	console.warn(${0})
-snippet ci "console.info"
-	console.info(${0})
-snippet ct "console.trace"
-	console.trace(${0})
-snippet ctime "console.time ... console.timeEnd"
-	console.time("${1}")
-	${0}}
-	console.timeEnd("$1")
-snippet ctimestamp "console.timeStamp"
-	console.timeStamp("${1}")
-snippet ca "console.assert"
-	console.assert(${1}, ${0})
-snippet cclear "console.clear"
-	console.clear()
-snippet cdir "console.dir"
-	console.dir(${0})
-snippet cdirx "console.dirxml"
-	console.dirxml(${1})
-snippet cgroup "console.group"
-	console.group("${1}")
-	${0}}
-	console.groupEnd()
-snippet cgroupc "console.groupCollapsed"
-	console.groupCollapsed("${1}")
-	${0}}
-	console.groupEnd()
-snippet cprof "console.profile"
-	console.profile("${1}")
-	${0}}
-	console.profileEnd()
-snippet ctable "console.table"
-	console.table(${1}"})
-# Misc
-# setTimeout function
-snippet timeout
-	setTimeout(() => {${0}}, 1000)
-snippet =>
-	const ${1} = (${2}) => {
-		${0}}
-	}
-snippet mongoosemodel
-	const mongoose = require('mongoose')
-	
-	const modelSchema = mongoose.Schema({
-		item: {
-			type: String,
-			required: true,
-			minlength: 2
-		},
-	})
-	
-	modelSchema.set('toJSON', {
-		transform: (document, returnedObject) => {
-			returnedObject.id = returnedObject._id.toString()
-			delete returnedObject._id
-		}
-	})
-	
-	const Model = mongoose.model('Model', modelSchema)
-
-	module.exports = $MT_FILENAME_BASE
-
-
-# Some useful Unicode entities
-# Non-Breaking Space
-# comment
-snippet //
-	<!-- ${1} -->${2}
-# HTML Doctype 
-snippet doctype
-	<!DOCTYPE html>
-snippet .
-	class='${1}'
-snippet #
-	id='${1}'
-snippet alt
-	alt='${1}'
-snippet charset
-	charset='utf-8'
-# Elements
-snippet a
-	<a href='${1}</a>${2}
-snippet a.
-	<a class='${1}' href='${2}</a>${3}
-snippet a#
-	<a id='${1}' href='${2}</a>${3}
-snippet a:mail
-	<a href='mailto:${1}?subject=${2}'>${3}</a>${4}
-snippet ac
-	<a href='${1}'>${2}</a>${3}
-snippet abbr
-	<abbr title='${1}'>${2}</abbr>${3}
-snippet address
-	<address>
-	  ${1}
-	</address>
-snippet area
-	<area shape='${1}' coords='${2}' href='${3}' alt='${4}'>${5}
-snippet area+
-	<area shape='${1}' coords='${2}' href='${3}' alt='${4}'>${5}
-	area+
-snippet area:c
-	<area shape='circle' coords='${1}' href='${2}' alt='${3}'>${4}
-snippet area:d
-	<area shape='default' coords='${1}' href='${2}' alt='${3}'>${4}
-snippet area:p
-	<area shape='poly' coords='${1}' href='${2}' alt='${3}'>${4}
-snippet area:r
-	<area shape='rect' coords='${1}' href='${2}' alt='${3}'>
-snippet article
-	<article>
-	  ${1}
-	</article>
-snippet article.
-	<article class='${1}'>
-	  ${2}
-	</article>
-snippet article#
-	<article id='${1}'>
-	  ${2}
-	</article>
-snippet aside
-	<aside>
-	  ${1}
-	</aside>
-snippet aside.
-	<aside class='${1}'>
-	  ${2}
-	</aside>
-snippet aside#
-	<aside id='${1}'>
-	  ${2}
-	</aside>
-snippet audio
-	<audio src='${1}>${2}</audio>${3}
-snippet b
-	<b>${1}</b>${2}
-snippet base
-	<base href='${1}' target='${2}'>${3}
-snippet bdi
-	<bdi>${1}</bdo>${2}
-snippet bdo
-	<bdo dir='${1}'>${2}</bdo>${3}
-snippet bdo:l
-	<bdo dir='ltr'>${1}</bdo>${2}
-snippet bdo:r
-	<bdo dir='rtl'>${1}</bdo>${2}
-snippet blockquote
-	<blockquote>
-	  ${1}
-	</blockquote>
-snippet body
-	<body>
-	  ${1}
-	</body>
-snippet br
-	<br>${1}
-snippet button
-	<button type='${1}'>${2}</button>${3}
-snippet button.
-	<button class='${1}' type='${2}'>${3}</button>${4}
-snippet button#
-	<button id='${1}' type='${2}'>${3}</button>${4}
-snippet buttonsubmit
-	<button type='submit'>${1}</button>${2}
-snippet buttonreset
-	<button type='reset'>${1}</button>${2}
-snippet canvas
-	<canvas>
-	  ${1}
-	</canvas>
-snippet caption
-	<caption>${1}</caption>${2}
-snippet cite
-	<cite>${1}</cite>${2}
-snippet code
-	<code>${1}</code>${2}
-snippet col
-	<col>${1}
-snippet colgroup
-	<colgroup>
-	  ${1}
-	</colgroup>
-snippet colgroup+
-	<colgroup>
-	  <col>
-	  ${1}
-	</colgroup>
-snippet command
-	<command type='command' label='${1}' icon='${2}'>${3}
-snippet command:c
-	<command type='checkbox' label='${1}' icon='${2}'>${3}
-snippet command:r
-	<command type='radio' radiogroup='${1}' label='${2}' icon='${3}'>${4}
-snippet datagrid
-	<datagrid>
-	  ${1}
-	</datagrid>
-snippet datalist
-	<datalist>
-	  ${1}
-	</datalist>
-snippet datatemplate
-	<datatemplate>
-	  ${1}
-	</datatemplate>
-snippet dd
-	<dd>${1}</dd>${2}
-snippet dd.
-	<dd class='${1}'>${2}</dd>${3}
-snippet dd#
-	<dd id='${1}'>${2}</dd>${3}
-snippet del
-	<del>${1}</del>${2}
-snippet details
-	<details>${1}</details>${2}
-snippet dfn
-	<dfn>${1}</dfn>${2}
-snippet dialog
-	<dialog>
-	  ${1}
-	</dialog>
-snippet div
-	<div>
-	  ${1}
-	</div>
-snippet div.
-	<div class='${1}'>
-	  ${2}
-	</div>
-snippet div#
-	<div id='${1}'>
-	  ${2}
-	</div>
-snippet dl
-	<dl>
-	  ${1}
-	</dl>
-snippet dl.
-	<dl class='${1}'>
-	  ${2}
-	</dl>
-snippet dl#
-	<dl id='${1}'>
-	  ${2}
-	</dl>
-snippet dl+
-	<dl>
-	  <dt>${1}</dt>
-	  <dd>${2}</dd>
-	  ${3}
-	</dl>
-snippet dt
-	<dt>${1}</dt>${2}
-snippet dt.
-	<dt class='${1}'>${2}</dt>${3}
-snippet dt#
-	<dt id='${1}'>${2}</dt>${3}
-snippet dt+
-	<dt>${1}</dt>
-	<dd>${2}</dd>
-	${3}
-snippet em
-	<em>${1}</em>${2}
-snippet embed
-	<embed src='${1}' type='${2}'>${3}
-snippet fieldset
-	<fieldset>
-	  ${1}
-	</fieldset>
-snippet fieldset.
-	<fieldset class='${1}'>
-	  ${2}
-	</fieldset>
-snippet fieldset#
-	<fieldset id='${1}'>
-	  ${2}
-	</fieldset>
-snippet fieldset+
-	<fieldset>
-	  <legend><span>${1}</span></legend>
-	  ${2}
-	</fieldset>
-	${2}
-snippet figcaption
-	<figcaption>${1}</figcaption>${2}
-snippet figure
-	<figure>${1}</figure>${2}
-snippet figure#
-	<figure id='${1}'>
-	  ${2}
-	</figure>
-snippet figure.
-	<figure class='${1}'>
-	  ${2}
-	</figure>
-snippet footer
-	<footer>
-	  ${1}
-	</footer>
-snippet footer.
-	<footer class='${1}'>
-	  ${2}
-	</footer>
-snippet footer#
-	<footer id='${1}'>
-	  ${2}
-	</footer>
-snippet form
-	<form action='${1}' method='${2}'>
-	  ${3}
-	</form>
-snippet form.
-	<form class='${1}' action='${2}' method='${3}'>
-	  ${4}
-	</form>
-snippet form#
-	<form id='${1}' action='${2}' method='${3}'>
-	  ${4}
-	</form>
-snippet h1
-	<h1>${1}</h1>${2}
-snippet h1.
-	<h1 class='${1}'>${2}</h1>${3}
-snippet h1#
-	<h1 id='${1}'>${2}</h1>${3}
-snippet h2
-	<h2>${1}</h2>${3}
-snippet h2.
-	<h2 class='${1}'>${2}</h2>${3}
-snippet h2#
-	<h2 id='${1}'>${2}</h2>${3}
-snippet h3
-	<h3>${1}</h3>${2}
-snippet h3.
-	<h3 class='${1}'>${2}</h3>${3}
-snippet h3#
-	<h3 id='${1}'>${2}</h3>${3}
-snippet h4
-	<h4>${1}</h4>${2}
-snippet h4.
-	<h4 class='${1}'>${2}</h4>${3}
-snippet h4#
-	<h4 id='${1}'>${2}</h4>${3}
-snippet h5
-	<h5>${1}</h5>${2}
-snippet h5.
-	<h5 class='${1}'>${2}</h5>${3}
-snippet h5#
-	<h5 id='${1}'>${2}</h5>${3}
-snippet h6
-	<h6>${1}</h6>${2}
-snippet h6.
-	<h6 class='${1}'>${2}</h6>${3}
-snippet h6#
-	<h6 id='${1}'>${2}</h6>${3}
-snippet head
-	<head>
-	  <meta http-equiv='content-type' content='text/html; charset=utf-8'>
-
-	  <title>${1}</title>
-	  ${2}
-	</head>${3}
-snippet header
-	<header>
-	  ${1}
-	</header>
-snippet header.
-	<header class='${1}'>
-	  ${2}
-	</header>
-snippet header#
-	<header id='${1}'>
-	  ${2}
-	</header>
-snippet hgroup
-	<hgroup>
-	  ${1}
-	</hgroup>
-snippet hgroup.
-	<hgroup class='${1}>
-	  ${2}
-	</hgroup>
-snippet hr
-	<hr>${1}
-snippet html
-	<html>
-	  ${1}
-	</html>
-snippet xhtml
-	<html xmlns='http://www.w3.org/1999/xhtml'>
-	  ${1}
-	</html>
-snippet html5
-	<!DOCTYPE html>
-	<html>
-	  <head>
-	  	<meta charset='utf-8'>
-	  	<meta name='viewport' content='width=device-width'>
-	  	<title>${1}</title>
-	  	${2}
-	  </head>
-	  <body>
-	  	${3}
-	  </body>
-	</html>${4}
-snippet html5l
-	<!DOCTYPE html>
-	<html lang='${1}'>
-	  <head>
-	    <meta charset='utf-8'>
-	    <meta name='viewport' content='width=device-width'>
-	    <title>${2}</title>
-	    ${3}
-	  </head>
-	  <body>
-	    ${4}
-	  </body>
-	</html>${5}
-snippet i
-	<i>${1}</i>
-snippet iframe
-	<iframe src='${1}' frameborder='0'></iframe>${2}
-snippet iframe.
-	<iframe class='${1}' src='${2}' frameborder='0'></iframe>${3}
-snippet iframe#
-	<iframe id='${1}' src='${2}' frameborder='0'></iframe>${3}
-snippet img
-	<img src='${1}' alt='${2}'>}${3}
-snippet img.
-	<img class='${1}' src='${2}' alt='${3}'>${4}
-snippet img#
-	<img id='${1}' src='${2}' alt='${3}'>${4}
-snippet input
-	<input type='${1}' name='${2}' id='${3}' value='${4}'>${5}
-snippet input.
-	<input class='${1}' type='${2}' name='${3}' id='${4}' value='${5}'>${6}
-snippet input:text
-	<input type='text' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:submit
-	<input type='submit' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:hidden
-	<input type='hidden' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:button
-	<input type='button' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:image
-	<input type='image' name='${1}' id='${2}' src='${3}' alt='${4}'>${5}
-snippet input:checkbox
-	<input type='checkbox' name='${1}' id='${2}'>${3}
-snippet input:radio
-	<input type='radio' name='${1}' id='${2}'>${3}
-snippet input:color
-	<input type='color' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:date
-	<input type='date' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:datetime
-	<input type='datetime' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:datetime-local
-	<input type='datetime-local' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:email
-	<input type='email' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:file
-	<input type='file' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:month
-	<input type='month' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:number
-	<input type='number' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:password
-	<input type='password' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:range
-	<input type='range' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:reset
-	<input type='reset' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:search
-	<input type='search' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:time
-	<input type='time' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:url
-	<input type='url' name='${1}' id='${2}' value='${3}'>${4}
-snippet input:week
-	<input type='week' name='${1}' id='${2}' value='${3}'>${4}
-snippet ins
-	<ins>${1}</ins>${2}
-snippet kbd
-	<kbd>${1}</kbd>${2}
-snippet label
-	<label for='${1}'>${2}</label>${3}
-snippet label:i
-	<label for='${2}'>${1}</label>
-	<input type='${3}' name='${4}' id='${5}' value='${6}' />${7}
-snippet label:s
-	<label for='${2}'>${1}</label>
-	<select name='${3}' id='${4}'>
-	  <option value='${5}'>${6}</option>
-	</select>${7}
-snippet legend
-	<legend>${1}</legend>${2}
-snippet legend+
-	<legend><span>${1}</span></legend>${2}
-snippet li
-	<li>${1}</li>${2}
-snippet li.
-	<li class='${1}'>${2}</li>${3}
-snippet li+
-	<li>${1}</li>
-	${2}
-snippet lia
-	<li><a href='${1}</a></li>${2}
-snippet lia+
-	<li><a href='${1}</a></li>${2}
-snippet link
-	<link rel='${1}' href='${2}' title='${3}' type='${4}'>${5}
-snippet link:atom
-	<link rel='alternate' href='${1}' title='Atom' type='application/atom+xml'>${2}
-snippet link:s
-	<link rel='stylesheet' href='${1}'>${2}
-snippet link:css
-	<link rel='stylesheet' href='${1}' type='text/css' media='${2}'>${3}
-snippet link:favicon
-	<link rel='shortcut icon' href='${1}' type='image/x-icon'>${2}
-snippet link:rss
-	<link rel='alternate' href='${1}' title='RSS' type='application/atom+xml'>${2}
-snippet link:touch
-	<link rel='apple-touch-icon' href='${1}'>${2}
-snippet main
-	<main role='main'>
-	  ${1}
-	</main>
-snippet map
-	<map name='${1}'>
-	  ${2}
-	</map>
-snippet map.
-	<map class='${1}' name='${2}'>
-	  ${3}
-	</map>
-snippet map#
-	<map name='${1}' id='${2}>
-	  ${3}
-	</map>
-snippet map+
-	<map name='${1}'>
-	  <area shape='${2}' coords='${3}' href='${4}' alt='${5}' />${6}
-	</map>${7}
-snippet mark
-	<mark>${1}</mark>${2}
-snippet menu
-	<menu>
-	  ${1}
-	</menu>
-snippet menu:c
-	<menu type='context'>
-	  ${1}
-	</menu>
-snippet menu:t
-	<menu type='toolbar'>
-	  ${1}
-	</menu>
-snippet meta
-	<meta http-equiv='${1}' content='${2}'>${3}
-snippet meta:s
-	<meta ${1}>
-snippet meta:d
-	<meta name='description' content='${1}'>${2}
-snippet meta:compat
-	<meta http-equiv='X-UA-Compatible' content='IE=${1}'>${2}
-snippet meta:refresh
-	<meta http-equiv='refresh' content='text/html;charset=UTF-8'>${1}
-snippet meta:utf
-	<meta http-equiv='content-type' content='text/html;charset=UTF-8'>${1}
-snippet meter
-	<meter>${1}</meter>${2}
-snippet nav
-	<nav>
-	  ${1}
-	</nav>
-snippet nav.
-	<nav class='${1}'>
-	  ${2}
-	</nav>
-snippet nav#
-	<nav id='${1}'>
-	  ${2}
-	</nav>
-snippet noscript
-	<noscript>
-	  ${1}
-	</noscript>
-snippet object
-	<object data='${1}' type='${2}'>
-	  ${3}
-	</object>
-# Embed QT Movie
-snippet movie
-	<object width='$2' height='$3' classid='clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B'
-	codebase='http://www.apple.com/qtactivex/qtplugin.cab'>
-	  <param name='src' value='$1'>
-	  <param name='controller' value='$4'>
-	  <param name='autoplay' value='$5'>
-	  <embed src='${1}'
-	    width='320' height='240'
-	    controller='true' autoplay='true'
-	    scale='tofit' cache='true'
-	    pluginspage='http://www.apple.com/quicktime/download/'>
-	</object>${4}
-snippet ol
-	<ol>
-	  ${1}
-	</ol>
-snippet ol.
-	<ol class='${1}'>
-	  ${2}
-	</ol>
-snippet ol#
-	<ol id='${1}'>
-	  ${2}
-	</ol>
-snippet ol+
-	<ol>
-	  <li>${1}</li>
-	  li+${2}
-	</ol>
-snippet opt
-	<option value='${1}'>${2}</option>${3}
-snippet opt+
-	<option value='${1}'>${2}</option>
-	${3}
-snippet optt
-	<option>${1}</option>${2}
-snippet optgroup
-	<optgroup>
-	  <option value='${1}'>${2}</option>
-	  ${3}
-	</optgroup>
-snippet output
-	<output>${1}</output>${1}
-snippet p
-	<p>${1}</p>${2}
-snippet p.
-	<p class='${1}'>${2}</p>${3}
-snippet p#
-	<p id='${1}'>${2}</p>${3}
-snippet param
-	<param name='${1}' value='${2}'>${3}
-snippet pre
-	<pre>
-	  ${1}
-	</pre>
-snippet progress
-	<progress>${1}</progress>${2}
-snippet q
-	<q>${1}</q>${2}
-snippet rp
-	<rp>${1}</rp>${2}
-snippet rt
-	<rt>${1}</rt>${2}
-snippet ruby
-	<ruby>
-	  <rp><rt>${1}</rt></rp>
-	</ruby>${2}
-snippet s
-	<s>${1}</s>${2}
-snippet samp
-	<samp>
-	  ${1}
-	</samp>
-snippet script
-	<script charset='utf-8'>
-	  ${1}
-	</script>
-snippet scripts
-	<script src='${1}.js'></script>${2}
-snippet scriptt
-	<script type='${1}' id='${2}'>
-	  ${3}
-	</script>
-snippet scriptsrc
-	<script src='${1}.js' charset='utf-8'></script>${2}
-snippet section
-	<section>
-	  ${1}
-	</section>
-snippet section.
-	<section class='${1}'>
-	  ${2}
-	</section>
-snippet section#
-	<section id='${1}'>
-	  ${2}
-	</section>
-snippet select
-	<select name='${1}' id='${2}'>
-	  ${3}
-	</select>
-snippet select.
-	<select name='${1}' id='${2}' class='${3}>
-	  ${4}
-	</select>
-snippet select+
-	<select name='${1}' id='${2}'>
-	  <option value='${3}'>${4}</option>
-	  ${3}
-	</select>
-snippet small
-	<small>${1}</small>${2}
-snippet source
-	<source src='${1}' type='${2}' media='${3}'>${4}
-snippet span
-	<span>${1}</span>${2}
-snippet span.
-	<span class='${1}'>${1}</span>${2}
-snippet span#
-	<span id='${1}'>${1}</span>${2}
-snippet strong
-	<strong>${1}</strong>${2}
-snippet style
-	<style type='text/css' media='${1}'>
-	  ${2}
-	</style>
-snippet sub
-	<sub>${1}</sub>${2}
-snippet summary
-	<summary>
-	  ${1}
-	</summary>
-snippet sup
-	<sup>${1}</sup>${2}
-snippet table
-	<table>
-	  <tr>
-	    <th>${1}</th>
-	    <th>${2}</th>
-	  </tr>
-	  <tr>
-	    <td>${3}</td>
-	    <td>${4}</td>
-	  </tr>
-	</table>
-snippet table3
-	<table>
-	  <tr>
-	    <th>${1}</th>
-	    <th>${2}</th>
-	    <th>${3}</th>
-	  </tr>
-	  <tr>
-	    <td>${3}</td>
-	    <td>${4}</td>
-	    <td>${5}</td>
-	  </tr>
-	</table>
-snippet table4
-	<table>
-	  <tr>
-	    <th>${1}</th>
-	    <th>${2}</th>
-	    <th>${3}</th>
-	    <th>${4}</th>
-	  </tr>
-	  <tr>
-	    <td>${3}</td>
-	    <td>${4}</td>
-	    <td>${5}</td>
-	    <td>${6}</td>
-	  </tr>
-	</table>
-snippet table.
-	<table class='${1}'>
-	  ${2}
-	</table>
-snippet table#
-	<table id='${1}'>
-	  ${2}
-	</table>
-snippet tbody
-	<tbody>
-	  ${1}
-	</tbody>
-snippet td
-	<td>${1}</td>${2}
-snippet td.
-	<td class='${1}'>${2}</td>${3}
-snippet td#
-	<td id='${1}'>${2}</td>${3}
-snippet td+
-	<td>${1}</td>
-	${2}
-snippet textarea
-	<textarea name='${1}' id='${2}' rows='${3}' cols='${4}'>${5}</textarea>${4}
-snippet tfoot
-	<tfoot>
-	  ${1}
-	</tfoot>
-snippet th
-	<th>${1}</th>${2}
-snippet th.
-	<th class='${1}'>${2}</th>${3}
-snippet th#
-	<th id='${1}'>${2}</th>${3}
-snippet th+
-	<th>${1}</th>
-	${2}
-snippet thead
-	<thead>
-	  ${2}
-	</thead>
-snippet time
-	<time datetime='${1}' pubdate='${2}'>${3}</time>${4}
-snippet title
-	<title>${1}</title>${2}
-snippet tr
-	<tr>
-	  ${1}
-	</tr>
-snippet tr+
-	<tr>
-	  <td>${1}</td>
-	  ${2}
-	</tr>
-snippet track
-	<track src='${1}' srclang='${2}' label='${3}' default='${4}>${5}
-snippet ul
-	<ul>
-	  ${1}
-	</ul>
-snippet ul.
-	<ul class='${1}'>
-	  ${2}
-	</ul>
-snippet ul#
-	<ul id='${1}'>
-	  ${2}
-	</ul>
-snippet ul+
-	<ul>
-	  <li>${1}</li>
-	  ${2}
-	</ul>
-snippet var
-	<var>${1}</var>${2}
-snippet video
-	<video src='${1}' height='${2}' width='${3}' preload='${4}' autoplay='${5}'>${6}</video>${7}
-snippet video.
-	<video class='${1}' src='${2}' height='${3}' width='${4}' preload='${5}' autoplay='${6}'>${7}</video>${8}
-snippet wbr
-	<wbr>${1}
-snippet viewport
-	<meta name='viewport' content='width=device-width, initial-scale=1'>${1}

@@ -1,0 +1,6 @@
+XKBMODEL="macintosh"
+XKBLAYOUT="fi"
+XKBVARIANT="mac"
+XKBOPTIONS="lv3:alt_switch"
+
+BACKSPACE="guess"

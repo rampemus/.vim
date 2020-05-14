@@ -5,16 +5,23 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ervandew/supertab'
 Plugin 'dense-analysis/ale'
 let g:ale_fix_on_save = 1
 let g:ale_fixers = ['eslint', 'tslint']
+
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
+let g:snipMate = get(g:, 'snipMate', {}) " Allow for vimrc re-sourcing
+let g:snipMate.scope_aliases = {}
+let g:snipMate.scope_aliases['vue'] = 'vue,html'
+
 Plugin 'alvan/vim-closetag'
 Plugin 'Chiel92/vim-autoformat'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -25,6 +32,8 @@ execute pathogen#infect()
 " NERDTree stuff
 set modifiable
 nmap § :NERDTreeToggle<CR>
+
+
 
 " NERDTress File highlighting
 set number
@@ -75,7 +84,7 @@ inoremap <S-Tab> <C-d>
 inoremap <expr> <BS> (strpart(getline('.'), col('.')-3, 2) == "  " && col('.')%2 != 0 ) ? "<BS><BS>" : "<BS>" 
 
 
-cmap git Git
+cmap git<space> Git<space>
 " ino <silent> <expr> <tab> ( len(getline('.')) == col('.')-1 && col('.') != 1 && strpart(getline('.'), col('.')-2, 1) != " " ) ? "<c-r>=TriggerSnippet()<cr>" : "  "
 
 " check snipmate.vim line 16 for other settings
