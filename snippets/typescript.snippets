@@ -1,46 +1,46 @@
 extends javascript
 
 snippet tconst "ts const"
-	const ${1}: ${2:any} = ${3}
-	${0}
+	const ${1}: ${2} = ${3}
+	${4}
 snippet tlet "ts let"
-	let ${1}: ${2:any} = ${3}
-	${0}
+	let ${1}: ${2} = ${3}
+	${4}
 snippet tvar "ts var"
-	var ${1}: ${2:any} = ${3}
-	${0}
+	var ${1}: ${2} = ${3}
+	${4}
 snippet + "var: type"
-	${1}: ${0:any}
+	${1}: ${2}
 snippet int "interface"
 	interface ${1} {
-	  ${2}: ${3:any}
+	  ${2}: ${3}
 	  ${4}
-	}${0}
+	}${4}
 snippet intx "interface extends"
 	interface ${1} extends ${2} {
-	  ${3}: ${4:any}
+	  ${3}: ${4}
 	  ${5}
-	}${0}
+	}${6}
 snippet tfun "ts function"
-	function ${1}(${2}): ${3:any} {
+	function ${1}(${2}): ${3} {
 	  ${4}
-	}${0}
+	}${5}
 snippet tcla "ts class"
 	class ${1} {
 	  ${2}
-	  constructor(public ${3}: ${4: any}) {
+	  constructor(public ${3}: ${4}) {
 	    ${5}
 	  }
 	  ${6}
-	}${0}
+	}${7}
 snippet tclax "ts class extends"
 	class ${1} extends ${2} {
 	  ${3}
-	  constructor(public ${4}: ${5: any}) {
+	  constructor(public ${4}: ${5}) {
 	    ${6}
 	  }
 	  ${7}
-	}${0}
+	}${8}
 snippet mongoosemodel
 	const mongoose = require('mongoose')
 	
@@ -61,5 +61,5 @@ snippet mongoosemodel
 	
 	const Model = mongoose.model('Model', modelSchema)
 
-	module.exports = ${1}
+	module.exports = Model
   

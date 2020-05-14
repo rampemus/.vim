@@ -1,32 +1,32 @@
 snippet ireact
-	import React from 'react'${0}
+	import React from 'react'${1}
 snippet ireactcomponent
-	import React, { Component } from 'react'${0}
+	import React, { Component } from 'react'${1}
 snippet ireactdom
-	import ReactDOM from 'react-dom'${0}
+	import ReactDOM from 'react-dom'${1}
 snippet reactcomponent
-	class ${1:ClassName} extends React.Component {
+	class ${1} extends React.Component {
 	  state = {
 
 	  }
 	  render() {
 	    return (
 	      <div>
-	        $1
+	        ${2}
 	      </div>
 	    )
 	  }
-	}${0}
+	}${3}
 snippet component
 	import React from 'react'
 
-	const ${1} = (props) => {
+	const component = (props) => {
 	  return(
-		  <div>$1</div>
+		  <div>${2}</div>
 	  )
 	}
 
-	export default $1${0}
+	export default component{3}
 snippet connectstore
 	const mapStateToProps = (state, props) => {
 	  return {
@@ -40,7 +40,7 @@ snippet connectstore
 
 	type Props = OwnProps & StateProps & DispatchProps
 
-	${0}export default connect(mapStateToProps,mapDispatchToProps)(${1})
+	export default connect(mapStateToProps,mapDispatchToProps)(${1})${2}
 
 snippet reducer
 	const initState = {
@@ -64,7 +64,7 @@ snippet reducer
 	  return action
 	}
   
-	export default $1Reducer${0}
+	export default $1Reducer${2}
 snippet service
 	import axios from 'axios'
 	const baseUrl = '/api/${1}'
@@ -74,7 +74,7 @@ snippet service
 	  return request.then(response => response.data)
 	}
   
-	export default { getAll }${0}
+	export default { getAll }${2}
 snippet mongoosemodel
 	const mongoose = require('mongoose')
   
@@ -95,7 +95,7 @@ snippet mongoosemodel
   
 	const Model = mongoose.model('Model', modelSchema)
   
-	module.exports = ${0}
+	module.exports = Model${1}
   
-snippet rdr
-	ReactDOM.render(${1}, ${2})${0}
+snippet ReactDOM
+	ReactDOM.render(${1}, ${2})${3}

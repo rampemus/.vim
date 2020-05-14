@@ -34,7 +34,6 @@ set modifiable
 nmap § :NERDTreeToggle<CR>
 
 
-
 " NERDTress File highlighting
 set number
 syntax on
@@ -76,6 +75,10 @@ nnoremap cp cip
 " inoremap <expr> <tab> ( len(getline('.')) > col('.') ) ? ">>" : "<c-p>" 
 " inoremap <tab> <C-p>
 nnoremap <tab> >>
+imap <NUL> <C-R><Tab>
+
+" nnoremap <NUL> :w<CR>
+
 " inoremap <tab> <C-t> " gets overwritten by supertab
 nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
