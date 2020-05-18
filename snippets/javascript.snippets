@@ -117,8 +117,8 @@ snippet timeout
 	setTimeout(() => {${1}}, 1000)${2}
 snippet =>
 	const ${1} = (${2}) => {
-		${0}}
-	}
+		${3}}
+	}${4}
 snippet mongoosemodel
 	const mongoose = require('mongoose')
 	
@@ -140,3 +140,14 @@ snippet mongoosemodel
 	const Model = mongoose.model('Model', modelSchema)
 
 	module.exports = $MT_FILENAME_BASE
+snippet vstore
+	import Vue from 'vue'
+	import Vuex from 'vuex'
+
+	Vue.use(Vuex)
+
+	export const store = new Vuex.Store({
+		state: {
+			${1}: ${2}
+		}
+	})${3}
