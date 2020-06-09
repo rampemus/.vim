@@ -1,6 +1,6 @@
 XKBMODEL="macintosh"
 XKBLAYOUT="fi"
 XKBVARIANT="mac"
-XKBOPTIONS="lv3:alt_switch"
+XKBOPTIONS="caps:escape"
 
 BACKSPACE="guess"

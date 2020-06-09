@@ -10,3 +10,7 @@ In unix system open terminal in ~
 If there is existing IntelliJ IDEA installed:
 
 `cp .vim/.ideavimrc .ideavimrc`
+
+Make keyboard configuration to match keyboard-file:
+
+`sudo dpkg-reconfigure keyboard-configuration`
