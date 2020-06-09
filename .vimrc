@@ -1,4 +1,3 @@
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -28,6 +27,7 @@ filetype plugin indent on    " required
 execute pathogen#infect()
 
 " *** OWN SETTINGS START FROM HERE ***
+" ** REMEMBER to run :PluginInstall **
 
 " NERDTree stuff
 set modifiable
@@ -35,7 +35,7 @@ nmap § :NERDTreeToggle<CR>
 
 
 " NERDTress File highlighting
-set number
+set number relativenumber
 syntax on
 colorscheme onedark
 let g:airline_theme='onedark'
@@ -47,7 +47,7 @@ set statusline+=%*
 "set tabstop=2
 "set autoindent
 "set expandtab
-set foldcolumn=1
+  set foldcolumn=1
 "set softtabstop=2
 set showmatch
 set nohlsearch
@@ -56,7 +56,9 @@ set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 nmap ö /
-nmap ä ?
+nmap Ö ?
+nnoremap Ä g;
+nnoremap ä g,
 nmap + $
 inoremap jj <esc>
 inoremap kj <esc>
@@ -70,12 +72,9 @@ nnoremap cp cip
 " inoremap <expr> <tab> strpart(getline('.'), col('.')-1, 1) == " " ? "a" : "b"
 " TAB shortcuts
 
-" inoremap <expr> <tab> ( index(endofblock, strpart(getline('.'), col('.'), 1)  ) >= 0 ) ? "<Esc>Ca<c-r>=TriggerSnippet()<cr><Esc>p" : ">>"
-" ino <silent> <expr> <tab> ( len(getline('.')) == col('.')-1 && col('.') != 1 && strpart(getline('.'), col('.')-2, 1) != " " ) ? "<c-r>=TriggerSnippet()<cr>" : "  "
-" inoremap <expr> <tab> ( len(getline('.')) > col('.') ) ? ">>" : "<c-p>" 
-" inoremap <tab> <C-p>
 nnoremap <tab> >>
 imap <NUL> <C-R><Tab>
+map <C-u> :source ~/.vimrc<CR>
 
 " nnoremap <NUL> :w<CR>
 
